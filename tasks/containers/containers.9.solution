@@ -1,0 +1,34 @@
+Task:
+
+Other Options
+Run the container with the requirements below.
+
+Requirements:
+image: busybox;
+container name: busy;
+container should run in detach mode;
+default user id: 1000;
+default user should belongs to group with gid=0 (primary) and gid=1200(supplementary);
+workdir: /data;
+container should have env variable: STUDENT=Karneyenka;
+command: sleep infinity.
+
+Documentation:
+https://docs.docker.com/engine/reference/run/
+
+Wrong solutions
+1.
+
+ docker run --group-add=0 --group-add=1200  -d -e "STUDENT=Karneyenka" --name busy --user 1000:0 -w /data --rm busybox sleep infinity
+ERROR:
+root@docker-host / $ docker run --group-add=1200 -w=/data -d --rm -e "STUDENT=Karneyenka" --name busy  --user="1000:0" busybox sleep infinity
+55b6c5cdfe768e9c35c55754cd6bdcff3b71d87e752c5a9d4879c07f3da3d789
+docker: Error response from daemon: unable to find group main: no matching entries in group file.
+
+Solution:
+docker run  -d -e "STUDENT=Karneyenka" --name busy --user=1000:0 --group-add=1200 -w /data busybox sleep infinity
+
+
+--user=UID:GID(for primary group) --group-add=GID(for supplementary group)
+
+UID-UserID, GID-GroupID

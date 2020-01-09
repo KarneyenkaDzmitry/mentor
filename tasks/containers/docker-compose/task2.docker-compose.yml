@@ -1,0 +1,23 @@
+# 
+# docker run -d --env-file /task/3/nginx_env -p 10083:80 -p 50000:50000 -v /task/3/index.html:/usr/share/nginx/html/index.html --log-driver journald --name nginx_web nginx:1.16
+    
+version: '2'
+services:
+    custom_compose:
+        image: nginx:1.16
+        container_name: nginx_web
+        restart: on-failure
+        ports:
+            - 50000:50000
+            - 10083:80
+        env_file:
+            /task/3/nginx_env
+        volumes:
+            /task/3/index.html:/usr/share/nginx/html/index.html
+        logs:
+            driver:
+                - journald
+
+# volumes:
+# networks:
+# configs:

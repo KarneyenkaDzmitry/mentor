@@ -1,0 +1,15 @@
+# docker run -d -e COURSE=compose -e MAINTAINER=dkarneyenka--restart on-failure -p 10082:80 --name httpd_web httpd
+
+version: '2'
+services:
+    custom_compose:
+        image: httpd
+        container_name: httpd_web
+        restart: on-failure
+        ports:
+            - "127.0.0.1:10082:80"
+        environment:
+            - COURSE=compose
+            - MAINTAINER=dkarneyenka
+
+    
