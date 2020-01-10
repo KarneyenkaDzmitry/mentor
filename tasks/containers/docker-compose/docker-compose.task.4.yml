@@ -1,27 +1,27 @@
-# version: '3.7'
-# services:
-#     nginx:
-#         container_name: nginx
-#         image: nginx:alpine
-#         depends_on:
-#             - tomcat
-#         ports:
-#             - 10084:80
-#         networks:
-#             - custom
-#     tomcat:
-#         container_name: tomcat
-#         image: tomcat:jdk8-openjdk-slim
-# #        ports:
-#  #           - target: 80
-# #              published: 8080
-# #              protocol: tcp
-# #              mode: ingress
-#         networks:
-#             - custom
-# networks:
-#     custom:
-#         driver: bridge
+version: '3.7'
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:alpine
+        depends_on:
+            - tomcat
+        ports:
+            - 10084:80
+        networks:
+            - custom
+    tomcat:
+        container_name: tomcat
+        image: tomcat:jdk8-openjdk-slim
+#        ports:
+ #           - target: 80
+#              published: 8080
+#              protocol: tcp
+#              mode: ingress
+        networks:
+            - custom
+networks:
+    custom:
+        driver: bridge
 
 version: '3.7'
 services:
