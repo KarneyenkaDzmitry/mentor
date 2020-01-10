@@ -58,6 +58,18 @@ The followings examples are all valid:-->
 
  <!-- ps -e -o comm,euid,fuid,ruid,suid,egid,fgid,gid,rgid,sgid,supgid | grep -E '^COMMAND|etcd' -->
 
+### NGINX proxy configuration /etc/nginx/conf.d/default.conf
+`upstream name {
+      server tomcat:8080;
+      server (tcp/ip|http://adress):8080;
+      }
+server {
+    listen       80;
+    server_name  localhost;
+    location / {
+        proxy_pass  http://name/;
+    }
+}`
 
 ### Useful links:
  - (Исповедь docker хейтера)[https://habr.com/ru/post/467607/] 
