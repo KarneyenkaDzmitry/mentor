@@ -1,0 +1,9 @@
+FROM ...
+...
+## Compiling *.go file
+RUN go build -a ./web.go
+
+FROM scratch
+...
+## Define container process
+CMD ["./web"]
